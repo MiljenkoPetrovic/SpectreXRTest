@@ -32,12 +32,4 @@ public class MenuControll : MonoBehaviour
         isPressConfirm = false;
     }
 
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

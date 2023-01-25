@@ -5,7 +5,8 @@ using UnityEngine.Assertions.Must;
 
 public class Parametar : MonoBehaviour
 {
-
+    GameObject cubes;
+    
     private Bounce bounce;
     [SerializeField] private Material newMaterial;
     [SerializeField] private Material oldMaterial;

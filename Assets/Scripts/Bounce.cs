@@ -20,19 +20,8 @@ public class Bounce : MonoBehaviour
             
     }
 
-    private void LateUpdate()
+    private void OnDisable()
     {
-        if(Mathf.Sin(Time.time) + initPos.y > (initPos.y))
-        {
-            transform.position = new Vector3(initPos.x, Mathf.Sin(Time.time) + initPos.y, initPos.z);
-        }
-        else if (Mathf.Sin(Time.time) + initPos.y < (initPos.y))
-        {
-            transform.position = new Vector3(initPos.x, Mathf.Sin(Time.time) + initPos.y, initPos.z);
-        }
-        else
-        {
-            transform.position = new Vector3(initPos.x, initPos.y, initPos.z);
-        }
+        transform.position = new Vector3(initPos.x, initPos.y, initPos.z);
     }
 }

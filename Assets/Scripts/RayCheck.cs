@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class RayCheck : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask layerMask2;
     private Rotate rotate;
+    private InteractWithCube cubeInter;
+    [SerializeField] InteractWithCube intCube;
+    [SerializeField] GameObject camera;
+
 
     void Update()
     {
@@ -23,5 +29,22 @@ public class RayCheck : MonoBehaviour
         {
             rotate.enabled = true;
         }
+
+        if (Physics.Raycast(transform.position, transform.forward, out var hitInteract, Mathf.Infinity, layerMask2))
+        {
+            
+            if (hitInteract.transform.TryGetComponent<InteractWithCube>(out cubeInter) && Input.GetMouseButtonDown(0))
+            {
+                intCube.Grab();
+            }
+
+        }
+
+        if (intCube.IsGrabbed && Input.GetMouseButtonUp(0))
+        {
+            intCube.Release();
+        }
+
     }
+    
 }

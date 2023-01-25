@@ -10,14 +10,6 @@ public class Parametar : MonoBehaviour
     private Bounce bounce;
     [SerializeField] private Material newMaterial;
     [SerializeField] private Material oldMaterial;
- 
-    
-    void Start()
-    {
-        
-    }
-
-
 
     void OnTriggerEnter(Collider collider)
     {

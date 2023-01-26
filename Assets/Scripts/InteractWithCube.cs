@@ -54,7 +54,7 @@ public class InteractWithCube : MonoBehaviour
                 );
             transform.rotation = targetRot;
             flag = true;
-            Invoke("WinGame", 1.5);
+            Invoke("WinGame", 2);
             
         }
     }

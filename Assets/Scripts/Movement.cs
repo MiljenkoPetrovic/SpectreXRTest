@@ -41,7 +41,8 @@ public class Movement : MonoBehaviour
     {
         Vector2 wantedVelocity = GetInput() * sensitivity;
         rotation += wantedVelocity * Time.deltaTime;
-        _camera.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
+        
+        _camera.localEulerAngles = new Vector3(Mathf.Clamp(rotation.y, -90, 90), rotation.x, 0);
         
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) walk = (walk + run);

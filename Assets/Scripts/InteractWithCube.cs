@@ -44,18 +44,16 @@ public class InteractWithCube : MonoBehaviour
     }
     private void OnTriggerStay(Collider collider)
     {
-        if ((collider.gameObject.tag == "cubeSpot"))
+        if ((collider.gameObject.CompareTag("cubeSpot")))
         {
             
-
-            transform.position = new Vector3(
+            transform.SetPositionAndRotation(new Vector3(
                 targetPos.x,
                 targetPos.y,
                 targetPos.z
-                );
-            transform.rotation = targetRot;
+                ), targetRot);
             flag = true;
-            Invoke("WinGame", 2);
+            Invoke(nameof(WinGame), 2);
             
         }
     }

@@ -10,7 +10,7 @@ public class Bounce : MonoBehaviour
 
     void Awake()
     {
-        initPos = transform.position;
+            initPos = transform.position;
         
     }
 
@@ -22,6 +22,6 @@ public class Bounce : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.position = new Vector3(initPos.x, initPos.y, initPos.z);
+            transform.position = new Vector3(initPos.x, initPos.y, initPos.z);
     }
 }

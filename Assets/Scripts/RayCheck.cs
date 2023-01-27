@@ -9,9 +9,6 @@ public class RayCheck : MonoBehaviour
     [SerializeField] private LayerMask layerMask2;
     private Rotate rotate;
     private InteractWithCube cubeInter;
-
-    
-
     [SerializeField] InteractWithCube intCube;
     [SerializeField] new GameObject camera;
 

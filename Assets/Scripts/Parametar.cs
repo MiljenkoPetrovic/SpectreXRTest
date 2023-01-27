@@ -5,35 +5,33 @@ using UnityEngine.Assertions.Must;
 
 public class Parametar : MonoBehaviour
 {
-    GameObject cubes;
-    
-    private Bounce bounce;
+    public new GameObject camera;
+    public Bounce bounce;
     [SerializeField] private Material newMaterial;
     [SerializeField] private Material oldMaterial;
 
     void OnTriggerEnter(Collider collider)
     {
-
-        if (collider.gameObject.tag == "Cube")
+        
+        if (collider.gameObject.CompareTag("MainCamera"))
         {
-            
-            if (collider.TryGetComponent<Bounce>(out bounce) && bounce.enabled == false)
+            if (bounce.enabled == false)
             {
                 bounce.enabled = true;
-                collider.GetComponent<MeshRenderer>().material = newMaterial;
+                transform.gameObject.GetComponent<MeshRenderer>().material = newMaterial;
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Cube")
+        if (other.gameObject.CompareTag("MainCamera"))
         {
             
-            if (other.TryGetComponent<Bounce>(out bounce) && bounce.enabled == true)
+            if (bounce.enabled == true)
             {
                 bounce.enabled = false;
-                other.GetComponent<MeshRenderer>().material = oldMaterial;
+                transform.gameObject.GetComponent<MeshRenderer>().material = oldMaterial;
             }
         }
     }

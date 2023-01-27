@@ -9,8 +9,11 @@ public class RayCheck : MonoBehaviour
     [SerializeField] private LayerMask layerMask2;
     private Rotate rotate;
     private InteractWithCube cubeInter;
+
+    
+
     [SerializeField] InteractWithCube intCube;
-    [SerializeField] GameObject camera;
+    [SerializeField] new GameObject camera;
 
 
     void Update()
@@ -30,7 +33,7 @@ public class RayCheck : MonoBehaviour
             rotate.enabled = true;
         }
 
-        if (Physics.Raycast(transform.position, transform.forward, out var hitInteract, Mathf.Infinity, layerMask2))
+        if (Physics.Raycast(transform.position, transform.forward, out var hitInteract, 2, layerMask2))
         {
             
             if (hitInteract.transform.TryGetComponent<InteractWithCube>(out cubeInter) && Input.GetMouseButtonDown(0))
@@ -46,5 +49,4 @@ public class RayCheck : MonoBehaviour
         }
 
     }
-    
 }

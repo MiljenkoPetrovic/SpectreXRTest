@@ -10,13 +10,17 @@ public class Movement : MonoBehaviour
     [SerializeField] float walk = 1;
     [SerializeField] float run = 2;
     [SerializeField] Transform _camera;
-    float camSens = 0.15f; // Mouse sensitivity
-    private Vector3 lastMouse= new Vector3(255,255,255); //Sredina ekrana
+    private Vector3 lastMouse = new(255, 255, 255); //Sredina ekrana
     private Vector3 direction;
-
     Vector2 movemement = Vector2.zero;
     private Rigidbody rb;
-    [SerializeField] private Vector2 sensitivity;
+
+    public Movement(Rigidbody rb)
+    {
+        this.rb = rb;
+    }
+
+    public Vector2 sensitivity;
     private Vector2 rotation;
 
 
@@ -30,7 +34,7 @@ public class Movement : MonoBehaviour
     
     private Vector2 GetInput()
     {
-            Vector2 input = new Vector2(
+            Vector2 input = new(
             Input.GetAxis("Mouse X"),
             Input.GetAxis("Mouse Y"));
 
@@ -42,19 +46,18 @@ public class Movement : MonoBehaviour
         Vector2 wantedVelocity = GetInput() * sensitivity;
         rotation += wantedVelocity * Time.deltaTime;
         
-        _camera.localEulerAngles = new Vector3(Mathf.Clamp(rotation.y, -90, 90), rotation.x, 0);
+        _camera.localEulerAngles = new Vector3(Mathf.Clamp(rotation.y, -90f, 90f), rotation.x, 0);
         
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) walk = (walk + run);
+        if (Input.GetKeyDown(KeyCode.LeftShift)) walk += run;
         if (Input.GetKeyUp(KeyCode.LeftShift)) walk -= run;
 
         float horizontal = Input.GetAxis("Vertical");
         float vertical = Input.GetAxis("Horizontal");
         movemement = new Vector2(vertical, horizontal);
-
         var projection = Vector3.ProjectOnPlane(_camera.forward,Vector3.up);
         direction = GetMoveDirection(projection);
-        transform.Translate(direction * walk * Time.deltaTime);
+        transform.Translate(Time.deltaTime * walk * direction);
     }
 
     public Vector3 GetMoveDirection(Vector3 cameraForwardProjection)

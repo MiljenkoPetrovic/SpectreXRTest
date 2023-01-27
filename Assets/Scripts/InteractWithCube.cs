@@ -16,6 +16,7 @@ public class InteractWithCube : MonoBehaviour
     public bool IsGrabbed => isGrabbed;
     private bool flag = false;
     public GameObject Canvas;
+    public GameObject Aim;
 
     private void Start()
     {
@@ -45,7 +46,7 @@ public class InteractWithCube : MonoBehaviour
     {
         if ((collider.gameObject.tag == "cubeSpot"))
         {
-            Debug.Log("This works");
+            
 
             transform.position = new Vector3(
                 targetPos.x,
@@ -60,8 +61,9 @@ public class InteractWithCube : MonoBehaviour
     }
 
     private void WinGame(){
+        Aim.SetActive(false);
         Canvas.SetActive(true);
-            Cursor.visible = true;
+        Cursor.visible = true;
     }
 
 }

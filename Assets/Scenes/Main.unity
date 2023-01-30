@@ -457,6 +457,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1641183110}
+    - target: {fileID: 243082529860894394, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+      propertyPath: _renderer
+      value: 
+      objectReference: {fileID: 1392816182}
     - target: {fileID: 444940966366569544, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -750,6 +754,7 @@ GameObject:
   - component: {fileID: 706663515}
   - component: {fileID: 706663513}
   - component: {fileID: 706663517}
+  - component: {fileID: 706663518}
   m_Layer: 0
   m_Name: CubeSpot
   m_TagString: cubeSpot
@@ -835,6 +840,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &706663518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706663512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689e9d480dd7f794c926122aa9ddaa74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 1906144627}
+  endGameMenu: {fileID: 287297586}
 --- !u!1 &844041791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,10 +1241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3462941337fc742970b57e1f7828cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: 1
-  run: 2
+  walkSpeed: 2
+  runSpeed: 10
   _camera: {fileID: 1641183111}
-  sensitivity: {x: 1000, y: -1000}
+  sensitivity: {x: 2000, y: -2000}
 --- !u!4 &998385280
 Transform:
   m_ObjectHideFlags: 0
@@ -1509,6 +1528,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1641183110}
+    - target: {fileID: 243082529860894394, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+      propertyPath: _renderer
+      value: 
+      objectReference: {fileID: 1793559437}
     - target: {fileID: 444940966366569544, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1615,6 +1638,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe3aefae20cbcd4db44cb73b8d5bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1392816182 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 444940966366569550, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+  m_PrefabInstance: {fileID: 599162278}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437208655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1790,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1477601693 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 444940966366569550, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+  m_PrefabInstance: {fileID: 1880448819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1501388754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,14 +2104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a7256c7935bde4aaf44f2df69e7a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
+  cubeLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  layerMask2:
+  interactableCubeLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  intCube: {fileID: 1685280215}
-  camera: {fileID: 1641183110}
+  interactWithCube: {fileID: 1685280215}
 --- !u!54 &1641183116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2201,6 +2233,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe3aefae20cbcd4db44cb73b8d5bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1681988018 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 444940966366569550, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+  m_PrefabInstance: {fileID: 444940967905951203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685280210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,11 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ba339acc7bc9e4dbe6609df57e1f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1641183110}
-  Cube: {fileID: 1685280210}
-  cubeSpot: {fileID: 706663512}
-  Canvas: {fileID: 287297586}
-  Aim: {fileID: 439327890}
+  player: {fileID: 1641183111}
 --- !u!114 &1793559432 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 444940966366569555, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
@@ -2327,6 +2360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe3aefae20cbcd4db44cb73b8d5bede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1793559437 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 444940966366569550, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+  m_PrefabInstance: {fileID: 1347520450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1880448819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2342,6 +2380,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1641183110}
+    - target: {fileID: 243082529860894394, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+      propertyPath: _renderer
+      value: 
+      objectReference: {fileID: 1477601693}
     - target: {fileID: 444940966366569544, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2528,7 +2570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036860852}
   - component: {fileID: 2036860851}
-  - component: {fileID: 2036860850}
+  - component: {fileID: 2036860853}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2536,26 +2578,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2036860850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036860849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &2036860851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,6 +2608,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2036860853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036860849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &2074520780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,6 +2866,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1641183110}
+    - target: {fileID: 243082529860894394, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
+      propertyPath: _renderer
+      value: 
+      objectReference: {fileID: 1681988018}
     - target: {fileID: 444940966366569544, guid: fc2f7f961a635fa41b9dcab78b8ed3a3, type: 3}
       propertyPath: m_RootOrder
       value: 3

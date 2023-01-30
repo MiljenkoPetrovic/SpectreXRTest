@@ -1,67 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class InteractWithCube : MonoBehaviour
 {
-    Vector3 initPos;
-    private Quaternion initRot;
-    public GameObject player;
-    public GameObject Cube;
-    public GameObject cubeSpot;
-    private Vector3 targetPos;
-    private Quaternion targetRot;
+    [SerializeField] private Transform player;
+
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    private Transform _transform;
     private bool isGrabbed;
+
     public bool IsGrabbed => isGrabbed;
-    private bool flag = false;
-    public GameObject Canvas;
-    public GameObject Aim;
+    private bool isGameFinished;
 
     private void Start()
     {
-        Canvas.SetActive(false);
-        initPos = transform.position;
-        targetPos = cubeSpot.transform.position;
-        targetRot = cubeSpot.transform.rotation = Quaternion.identity;
+        _transform = transform;
+        initialPosition = _transform.position;
     }
+
     public void Grab()
     {
-        initPos = transform.position;
-        Cube.transform.SetParent(player.transform);
+        SetParent(player);
         isGrabbed = true;
     }
+
     public void Release()
     {
+        SetParent(null);
         isGrabbed = false;
-        Cube.transform.parent= null;
-        isGrabbed = false;
-        if (flag == false)
+
+        if (!isGameFinished)
         {
-            transform.position = initPos;
-            transform.rotation = initRot;
+            _transform.SetPositionAndRotation(initialPosition, initialRotation);
         }
     }
-    private void OnTriggerStay(Collider collider)
+
+    public void SetParent(Transform parent)
     {
-        if ((collider.gameObject.CompareTag("cubeSpot")))
-        {
-            
-            transform.SetPositionAndRotation(new Vector3(
-                targetPos.x,
-                targetPos.y,
-                targetPos.z
-                ), targetRot);
-            flag = true;
-            Invoke(nameof(WinGame), 2);
-            
-        }
+        _transform.SetParent(parent);
     }
 
-    private void WinGame(){
-        Aim.SetActive(false);
-        Canvas.SetActive(true);
-        Cursor.visible = true;
+    public void FinishGame()
+    {
+        isGameFinished = true;
     }
-
 }

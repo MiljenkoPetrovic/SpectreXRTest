@@ -12,14 +12,6 @@ public class RayCheck : MonoBehaviour
     [SerializeField] InteractWithCube intCube;
     [SerializeField] new GameObject camera;
 
-<<<<<<< Updated upstream
-=======
-    private void Awake()
-    {
-        _transform = transform;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
->>>>>>> Stashed changes
 
     void Update()
     {
@@ -37,16 +29,8 @@ public class RayCheck : MonoBehaviour
         {
             rotate.enabled = true;
         }
-<<<<<<< Updated upstream
 
         if (Physics.Raycast(transform.position, transform.forward, out var hitInteract, 2, layerMask2))
-=======
-    }
-    
-    private void CubeInteraction()
-    {
-        if (Physics.Raycast(_transform.position, _transform.forward, out var interactableCubeHit, 2, interactableCubeLayerMask))
->>>>>>> Stashed changes
         {
             
             if (hitInteract.transform.TryGetComponent<InteractWithCube>(out cubeInter) && Input.GetMouseButtonDown(0))

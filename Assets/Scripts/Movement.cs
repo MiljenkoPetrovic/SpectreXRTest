@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-<<<<<<< Updated upstream
     [SerializeField] float walk = 1;
     [SerializeField] float run = 2;
     [SerializeField] Transform _camera;
@@ -20,13 +19,6 @@ public class Movement : MonoBehaviour
     {
         this.rb = rb;
     }
-=======
-    [SerializeField] private float walkSpeed = 1;
-    [SerializeField] private float runSpeed = 2;
-    [SerializeField] private Transform _camera;
-    [SerializeField] private Vector2 sensitivity;
-    
->>>>>>> Stashed changes
 
     public Vector2 sensitivity;
     private Vector2 rotation;
@@ -34,13 +26,9 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-<<<<<<< Updated upstream
         rb = GetComponent<Rigidbody>();
         Cursor.visible = false;
 
-=======
-        _transform = transform;
->>>>>>> Stashed changes
     }
 
     

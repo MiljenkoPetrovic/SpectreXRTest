@@ -8,17 +8,16 @@ public class CubeSpot : MonoBehaviour
     private void Awake()
     {
         endGameMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("interCube")) return;
-
+        if (!other.CompareTag("interCube")) return; 
         if (!other.TryGetComponent<InteractWithCube>(out var interactWithCube)) return;
 
         interactWithCube.FinishGame();
         interactWithCube.Release();
-        interactWithCube.SetParent(transform);
         interactWithCube.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
         Invoke(nameof(Win), 2);
@@ -26,8 +25,8 @@ public class CubeSpot : MonoBehaviour
 
     private void Win()
     {
-        crosshair.SetActive(false);
-        endGameMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        endGameMenu.SetActive(true);
     }
 }

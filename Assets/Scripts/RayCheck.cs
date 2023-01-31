@@ -39,7 +39,6 @@ public class RayCheck : MonoBehaviour
     {
         if (Physics.Raycast(_transform.position, _transform.forward, out var interactableCubeHit, 2, interactableCubeLayerMask))
         {
-
             if (Input.GetMouseButtonDown(0))
             {
                 interactWithCube.Grab();

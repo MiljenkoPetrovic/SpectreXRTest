@@ -8,8 +8,9 @@ public class InteractWithCube : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private Transform _transform;
-    private bool isGrabbed;
+    private float distance;
 
+    private bool isGrabbed;
     public bool IsGrabbed => isGrabbed;
     private bool isGameFinished;
 
@@ -17,28 +18,39 @@ public class InteractWithCube : MonoBehaviour
     {
         _transform = transform;
         initialPosition = _transform.position;
+        initialRotation = _transform.rotation;
+    }
+
+    private void Update()
+    {
+        if (isGrabbed)
+        {
+            var direction = player.transform.forward;
+            _transform.SetPositionAndRotation((player.position + direction * distance), (player.rotation));
+        }
+        else
+        {
+            if (!isGameFinished)
+            {
+                _transform.SetPositionAndRotation(initialPosition, initialRotation);
+            }
+        }
     }
 
     public void Grab()
     {
-        SetParent(player);
         isGrabbed = true;
+        distance = Vector3.Distance(player.position, _transform.position);
     }
 
     public void Release()
     {
-        SetParent(null);
         isGrabbed = false;
 
         if (!isGameFinished)
         {
             _transform.SetPositionAndRotation(initialPosition, initialRotation);
         }
-    }
-
-    public void SetParent(Transform parent)
-    {
-        _transform.SetParent(parent);
     }
 
     public void FinishGame()

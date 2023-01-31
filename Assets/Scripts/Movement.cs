@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     {
         Cursor.visible = false;
         _transform = transform;
+        _camera.rotation = Quaternion.identity;
     }
 
     private void Update()
@@ -24,7 +25,9 @@ public class Movement : MonoBehaviour
 
         rotation += wantedVelocity * Time.deltaTime;
 
-        _camera.localEulerAngles = new Vector3(Mathf.Clamp(rotation.y, -90f, 90f), rotation.x, 0);
+        rotation.y = Mathf.Clamp(rotation.y, -90f, 90f);
+
+        _camera.transform.rotation = Quaternion.Euler(rotation.y, rotation.x, 0);
 
         var speed = Input.GetKeyDown(KeyCode.LeftShift) ? walkSpeed * runSpeed : walkSpeed;
 

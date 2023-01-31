@@ -1,27 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Bounce : MonoBehaviour
 {
-    Vector3 initPos;
-    
+    private Vector3 initialPosition;
+    private Transform _transform;
 
-    void Awake()
+    private void Awake()
     {
-            initPos = transform.position;
-        
+        _transform = transform;
+        initialPosition = _transform.position;
     }
 
-    void Update()
+    private void Update()
     {
-            transform.position = new Vector3(initPos.x, Mathf.Sin(Time.time) + initPos.y, initPos.z);
-            
+        _transform.position = new Vector3(initialPosition.x, Mathf.Sin(Time.time) + initialPosition.y, initialPosition.z);
     }
 
     private void OnDisable()
     {
-            transform.position = new Vector3(initPos.x, initPos.y, initPos.z);
+        _transform.position = initialPosition;
     }
 }

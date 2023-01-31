@@ -1,27 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class RayCheck : MonoBehaviour
 {
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private LayerMask layerMask2;
-    private Rotate rotate;
-    private InteractWithCube cubeInter;
-    [SerializeField] InteractWithCube intCube;
-    [SerializeField] new GameObject camera;
+    [SerializeField] private LayerMask cubeLayerMask;
+    [SerializeField] private LayerMask interactableCubeLayerMask;
+    [SerializeField] private InteractWithCube interactWithCube;
 
+    private Rotate rotate;
+    private Transform _transform;
+
+    private void Awake()
+    {
+        _transform = transform;
+    }
 
     void Update()
     {
-        //Vidim nesto
-        if (Physics.Raycast(transform.position, transform.forward, out var hit, Mathf.Infinity, layerMask))
+        StopCubeRotation();
+        CubeInteraction();
+    }
+
+    private void StopCubeRotation()
+    {
+        if (Physics.Raycast(_transform.position, _transform.forward, out var cubeHit, Mathf.Infinity, cubeLayerMask))
         {
-            //to što vidim je kocka
-            if (hit.transform.TryGetComponent<Rotate>(out rotate) && rotate.enabled)
+            if (cubeHit.transform.TryGetComponent<Rotate>(out rotate) && rotate.enabled)
             {
-                //zaustavi se
                 rotate.enabled = false;
             }
         }
@@ -29,21 +33,22 @@ public class RayCheck : MonoBehaviour
         {
             rotate.enabled = true;
         }
+    }
 
-        if (Physics.Raycast(transform.position, transform.forward, out var hitInteract, 2, layerMask2))
+    private void CubeInteraction()
+    {
+        if (Physics.Raycast(_transform.position, _transform.forward, out var interactableCubeHit, 2, interactableCubeLayerMask))
         {
-            
-            if (hitInteract.transform.TryGetComponent<InteractWithCube>(out cubeInter) && Input.GetMouseButtonDown(0))
+
+            if (Input.GetMouseButtonDown(0))
             {
-                intCube.Grab();
+                interactWithCube.Grab();
             }
-
         }
 
-        if (intCube.IsGrabbed && Input.GetMouseButtonUp(0))
+        if (interactWithCube.IsGrabbed && Input.GetMouseButtonUp(0))
         {
-            intCube.Release();
+            interactWithCube.Release();
         }
-
     }
 }

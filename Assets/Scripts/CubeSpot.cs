@@ -14,11 +14,11 @@ public class CubeSpot : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("interCube")) return; 
-        if (!other.TryGetComponent<InteractWithCube>(out var interactWithCube)) return;
+        if (!other.TryGetComponent<InteractWithObject>(out var interactWithObject)) return;
 
-        interactWithCube.FinishGame();
-        interactWithCube.Release();
-        interactWithCube.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        interactWithObject.FinishGame();
+        interactWithObject.Grab();
+        interactWithObject.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
         Invoke(nameof(Win), 2);
     }

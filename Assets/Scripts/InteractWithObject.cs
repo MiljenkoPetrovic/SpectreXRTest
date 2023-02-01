@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-public class InteractWithCube : MonoBehaviour
+public class InteractWithObject : MonoBehaviour, IGrabbable
 {
     [SerializeField] private Transform player;
 
@@ -37,6 +36,10 @@ public class InteractWithCube : MonoBehaviour
         }
     }
 
+    public void FinishGame()
+    {
+        isGameFinished = true;
+    }
     public void Grab()
     {
         isGrabbed = true;
@@ -46,15 +49,6 @@ public class InteractWithCube : MonoBehaviour
     public void Release()
     {
         isGrabbed = false;
-
-        if (!isGameFinished)
-        {
-            _transform.SetPositionAndRotation(initialPosition, initialRotation);
-        }
-    }
-
-    public void FinishGame()
-    {
-        isGameFinished = true;
+        _transform.SetPositionAndRotation(initialPosition, initialRotation);
     }
 }

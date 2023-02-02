@@ -1,5 +1,12 @@
 ﻿public interface IGrabbable
 {
-    public void Grab();
-    public void Release();
+    
+    public bool Grab()
+    {
+        return true;
+    }
+    public bool Release()
+    {
+        return false;
+    }
 }

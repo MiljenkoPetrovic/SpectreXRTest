@@ -10,8 +10,7 @@ public class InteractWithObject : MonoBehaviour, IGrabbable
     private float distance;
 
     private bool isGrabbed;
-    public bool IsGrabbed => isGrabbed;
-    private bool isGameFinished;
+    private bool isTheCubeCorrect;
 
     private void Start()
     {
@@ -29,26 +28,18 @@ public class InteractWithObject : MonoBehaviour, IGrabbable
         }
         else
         {
-            if (!isGameFinished)
+            if (!isGrabbed)
             {
+                if(!isTheCubeCorrect)
+                {
                 _transform.SetPositionAndRotation(initialPosition, initialRotation);
+                }
             }
         }
     }
 
     public void FinishGame()
     {
-        isGameFinished = true;
-    }
-    public void Grab()
-    {
-        isGrabbed = true;
-        distance = Vector3.Distance(player.position, _transform.position);
-    }
-
-    public void Release()
-    {
-        isGrabbed = false;
-        _transform.SetPositionAndRotation(initialPosition, initialRotation);
+        isTheCubeCorrect = true;
     }
 }

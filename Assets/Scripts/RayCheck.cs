@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
-public class RayCheck : MonoBehaviour
+public class RayCheck : MonoBehaviour, IGrabbable
 {
     [SerializeField] private LayerMask cubeLayerMask;
     [SerializeField] private LayerMask interactableObjectLayerMask;
@@ -9,8 +9,12 @@ public class RayCheck : MonoBehaviour
     private IGrabbable grabbable;
     private Rotate rotate;
     private Transform _transform;
+    private bool isGrabbed;
     RaycastHit interactableObjectHit;
-
+    private bool isTheCubeCorrect;
+    private float distance;
+    
+    
     private void Awake()
     {
         _transform = transform;
@@ -43,17 +47,34 @@ public class RayCheck : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                interactableObjectHit.transform.TryGetComponent<IGrabbable>(out grabbable); 
-                grabbable.Grab();
+                interactableObjectHit.transform.TryGetComponent<IGrabbable>(out grabbable);
+                 isGrabbed = grabbable.Grab();
             }
         }
 
         if (grabbable == null) return;
 
-        if (/*interactWithObject.Interact && */Input.GetMouseButtonUp(0))
+        if (isGrabbed && Input.GetMouseButtonUp(0))
         {
-            grabbable.Release();
+            isGrabbed = grabbable.Release();
         }
     }
 }
-//je li object grabbable? ako  je grab. Ako object nije grabbable ne zanima me.
+/*
+public void Grab()
+    {
+        isGrabbed = true;
+        distance = Vector3.Distance(player.position, _transform.position);
+    }
+if (isGrabbed)
+{
+    var direction = player.transform.forward;
+    _transform.SetPositionAndRotation((player.position + direction * distance), (player.rotation));
+}
+else
+{
+    if (!isGrabbed)
+    {
+        _transform.SetPositionAndRotation(initialPosition, initialRotation);
+    }
+}*/

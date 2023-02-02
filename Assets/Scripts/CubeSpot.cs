@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class CubeSpot : MonoBehaviour
+public class CubeSpot : MonoBehaviour, IGrabbable
 {
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject endGameMenu;
+    private IGrabbable grabbable;
 
     private void Awake()
     {
@@ -13,13 +14,14 @@ public class CubeSpot : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!other.CompareTag("interCube")) return; 
+        if (!other.CompareTag("interCube"))
+        {
+            other.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        } 
         if (!other.TryGetComponent<InteractWithObject>(out var interactWithObject)) return;
 
         interactWithObject.FinishGame();
-        interactWithObject.Grab();
-        interactWithObject.transform.SetPositionAndRotation(transform.position, transform.rotation);
-
+        Release();
         Invoke(nameof(Win), 2);
     }
 
@@ -28,5 +30,10 @@ public class CubeSpot : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         endGameMenu.SetActive(true);
+    }
+
+    
+    public void Release(){
+           
     }
 }

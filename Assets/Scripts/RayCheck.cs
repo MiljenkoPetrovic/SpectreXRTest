@@ -24,15 +24,7 @@ public class RayCheck : MonoBehaviour
     }
     private bool Ray()
     {
-        if (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, Mathf.Infinity))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        
+        return (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, Mathf.Infinity)) 
     }
 
     private void StopCubeRotation()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractWithObject : MonoBehaviour, IGrabbable
+public class InteractWithCube : MonoBehaviour, IGrabbable
 {
     [SerializeField] private Transform player;
 
@@ -26,20 +26,29 @@ public class InteractWithObject : MonoBehaviour, IGrabbable
             var direction = player.transform.forward;
             _transform.SetPositionAndRotation((player.position + direction * distance), (player.rotation));
         }
-        else
+        if (!isGrabbed)
         {
-            if (!isGrabbed)
+            if(!isTheCubeCorrect)
             {
-                if(!isTheCubeCorrect)
-                {
                 _transform.SetPositionAndRotation(initialPosition, initialRotation);
-                }
             }
         }
+        
     }
 
     public void FinishGame()
     {
         isTheCubeCorrect = true;
+    }
+
+    public void Grab()
+    {
+        isGrabbed = true;
+        distance = Vector3.Distance(player.position, _transform.position);
+    }
+
+    public void Release()
+    {
+        isGrabbed = false;
     }
 }

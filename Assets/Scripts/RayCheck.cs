@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
-public class RayCheck : MonoBehaviour, IGrabbable
+public class RayCheck : MonoBehaviour
 {
     [SerializeField] private LayerMask cubeLayerMask;
     [SerializeField] private LayerMask interactableObjectLayerMask;
@@ -43,20 +42,21 @@ public class RayCheck : MonoBehaviour, IGrabbable
 
     private void CubeInteraction()
     {
+        // don't touch
         if (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, 2, interactableObjectLayerMask))
         {
             if (Input.GetMouseButtonDown(0))
             {
                 interactableObjectHit.transform.TryGetComponent<IGrabbable>(out grabbable);
-                 isGrabbed = grabbable.Grab();
+                grabbable.Grab();
             }
         }
 
         if (grabbable == null) return;
 
-        if (isGrabbed && Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            isGrabbed = grabbable.Release();
+            grabbable.Release();
         }
     }
 }
@@ -66,7 +66,8 @@ public void Grab()
         isGrabbed = true;
         distance = Vector3.Distance(player.position, _transform.position);
     }
-if (isGrabbed)
+
+(if (isGrabbed)
 {
     var direction = player.transform.forward;
     _transform.SetPositionAndRotation((player.position + direction * distance), (player.rotation));

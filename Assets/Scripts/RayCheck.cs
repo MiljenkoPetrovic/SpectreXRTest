@@ -8,10 +8,8 @@ public class RayCheck : MonoBehaviour
     private IGrabbable grabbable;
     private Rotate rotate;
     private Transform _transform;
-    private bool isGrabbed;
     RaycastHit interactableObjectHit;
-    private bool isTheCubeCorrect;
-    private float distance;
+    
     
     
     private void Awake()
@@ -24,26 +22,37 @@ public class RayCheck : MonoBehaviour
         StopCubeRotation();
         CubeInteraction();
     }
+    private bool Ray()
+    {
+        if (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, Mathf.Infinity))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
 
     private void StopCubeRotation()
     {
-        if (Physics.Raycast(_transform.position, _transform.forward, out var cubeHit, Mathf.Infinity, cubeLayerMask))
-        {
-            if (cubeHit.transform.TryGetComponent<Rotate>(out rotate) && rotate.enabled)
+        if (Ray()) { 
+            if (interactableObjectHit.transform.TryGetComponent<Rotate>(out rotate) && rotate.enabled)
             {
                 rotate.enabled = false;
             }
-        }
-        else if (rotate != null && !rotate.enabled)
-        {
-            rotate.enabled = true;
+            else if (rotate != null && !rotate.enabled)
+            {
+                rotate.enabled = true;
+            }
         }
     }
 
     private void CubeInteraction()
     {
         // don't touch
-        if (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, 2, interactableObjectLayerMask))
+        if (Ray())
         {
             if (Input.GetMouseButtonDown(0))
             {

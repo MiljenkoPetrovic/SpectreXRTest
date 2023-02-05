@@ -24,7 +24,7 @@ public class RayCheck : MonoBehaviour
     }
     private bool Ray()
     {
-        return (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, Mathf.Infinity)) 
+        return (Physics.Raycast(_transform.position, _transform.forward, out interactableObjectHit, Mathf.Infinity));
     }
 
     private void StopCubeRotation()
@@ -43,12 +43,12 @@ public class RayCheck : MonoBehaviour
 
     private void CubeInteraction()
     {
-        // don't touch
         if (Ray())
         {
             if (Input.GetMouseButtonDown(0))
             {
                 interactableObjectHit.transform.TryGetComponent<IGrabbable>(out grabbable);
+                if (grabbable == null) return;
                 grabbable.Grab();
             }
         }
@@ -61,22 +61,4 @@ public class RayCheck : MonoBehaviour
         }
     }
 }
-/*
-public void Grab()
-    {
-        isGrabbed = true;
-        distance = Vector3.Distance(player.position, _transform.position);
-    }
 
-(if (isGrabbed)
-{
-    var direction = player.transform.forward;
-    _transform.SetPositionAndRotation((player.position + direction * distance), (player.rotation));
-}
-else
-{
-    if (!isGrabbed)
-    {
-        _transform.SetPositionAndRotation(initialPosition, initialRotation);
-    }
-}*/

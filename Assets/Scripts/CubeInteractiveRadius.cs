@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Parametar : MonoBehaviour
+public class CubeInteractiveRadius : MonoBehaviour
 {
     [SerializeField] private Bounce bounce;
     [SerializeField] private Material newMaterial;

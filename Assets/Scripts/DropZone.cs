@@ -1,13 +1,12 @@
-using TMPro;
 using UnityEngine;
 
-public class CubeSpot : MonoBehaviour, IGrabbable
+public class DropZone : MonoBehaviour, IGrabbable
 {
     [SerializeField] private GameObject crosshair;
     [SerializeField] private GameObject endGameMenu;
     [SerializeField] private GameObject cubePlaceholder;
+    
     private IGrabbable grabbable;
-
     private Vector3 initialPosition;
     private Quaternion initialRotation;
 
@@ -22,7 +21,7 @@ public class CubeSpot : MonoBehaviour, IGrabbable
     private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("interCube")) return;
-        if (!other.TryGetComponent<InteractWithCube>(out var interactWithCube)) return;
+        if (!other.TryGetComponent<TransformGrabber>(out var interactWithCube)) return;
         Snap(initialPosition, initialRotation, other.transform);
         interactWithCube.FinishGame();
         Invoke(nameof(Win), 2);

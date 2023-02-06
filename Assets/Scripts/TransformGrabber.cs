@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class InteractWithCube : MonoBehaviour, IGrabbable
+public class TransformGrabber : MonoBehaviour, IGrabbable
 {
     [SerializeField] private Transform player;
 
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     private Transform _transform;
-    private float distance;
 
+    private float distance;
     private bool isGrabbed;
     private bool isTheCubeCorrect;
 

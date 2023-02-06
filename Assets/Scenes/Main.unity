@@ -147,7 +147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &287297587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,9 +1201,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 31111bd19b5c4b54d830eb30b16f7436, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
+      - m_Target: {fileID: 287297591}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2296,9 +2296,10 @@ GameObject:
   - component: {fileID: 1641183111}
   - component: {fileID: 1641183113}
   - component: {fileID: 1641183112}
-  - component: {fileID: 1641183114}
   - component: {fileID: 1641183117}
   - component: {fileID: 1641183116}
+  - component: {fileID: 1641183118}
+  - component: {fileID: 1641183119}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2372,24 +2373,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1641183114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641183110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a7256c7935bde4aaf44f2df69e7a8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubeLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  interactableObjectLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!54 &1641183116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2419,6 +2402,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1641183118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641183110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75088f341101a8740b6a3eebc25484de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1641183119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641183110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6d9b6a13880604294587f8aaa96778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1678663339
 GameObject:
   m_ObjectHideFlags: 0

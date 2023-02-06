@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class InteractWithCapsule : MonoBehaviour, IGrabbable
+public class FixedJointGrabber : MonoBehaviour, IGrabbable
 {
     [SerializeField] private Rigidbody _camera;
+
     private bool isGrabbed;
     private FixedJoint fixedJoint;
     
